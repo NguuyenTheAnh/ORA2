@@ -318,19 +318,31 @@ function viewNavDetails(index, navName) {
       </thead>
       <tbody>
   `;
-  headersData.forEach((header, idx) => {
+  if (headersData.length === 0) {
+    // Nếu không có section-header, hiển thị một hàng với icon "+"
     tableHTML += `
       <tr>
-        <td>${normalizeString(header.text)}</td>
+        <td>Không có nội dung</td>
         <td>
-          <i class="fas fa-eye" style="margin-right: 10px; cursor: pointer;" title="View" onclick="viewSectionHeader(${index}, '${navName}', ${idx})"></i>
-          <i class="fas fa-pencil-alt" style="margin-right: 10px; cursor: pointer;" title="Edit" onclick="editSectionHeader(${index}, '${navName}', ${idx})"></i>
-          <i class="fas fa-times" style="margin-right: 10px; cursor: pointer;" title="Delete" onclick="deleteSectionHeader(${index}, '${navName}', ${idx})"></i>
-          <i class="fas fa-plus" style="margin-right: 10px; cursor: pointer;" title="Thêm hàng mới" onclick="addSectionHeader(${index}, '${navName}', ${idx})"></i>
+          <i class="fas fa-plus" style="margin-right: 10px; cursor: pointer;" title="Thêm nội dung mới" onclick="addSectionHeader(${index}, '${navName}', -1)"></i>
         </td>
       </tr>
     `;
-  });
+  } else {
+    headersData.forEach((header, idx) => {
+      tableHTML += `
+        <tr>
+          <td>${normalizeString(header.text)}</td>
+          <td>
+            <i class="fas fa-eye" style="margin-right: 10px; cursor: pointer;" title="View" onclick="viewSectionHeader(${index}, '${navName}', ${idx})"></i>
+            <i class="fas fa-pencil-alt" style="margin-right: 10px; cursor: pointer;" title="Edit" onclick="editSectionHeader(${index}, '${navName}', ${idx})"></i>
+            <i class="fas fa-times" style="margin-right: 10px; cursor: pointer;" title="Delete" onclick="deleteSectionHeader(${index}, '${navName}', ${idx})"></i>
+            <i class="fas fa-plus" style="margin-right: 10px; cursor: pointer;" title="Thêm hàng mới" onclick="addSectionHeader(${index}, '${navName}', ${idx})"></i>
+          </td>
+        </tr>
+      `;
+    });
+  }
   tableHTML += `
       </tbody>
     </table>
@@ -429,7 +441,12 @@ function addSectionHeader(index, navName, headerIndex) {
     contentDiv.className = 'content';
     contentDiv.innerHTML = ''; // Nội dung rỗng
 
-    if (headerIndex < sectionHeaders.length - 1) {
+    if (headerIndex === -1) {
+      // Nếu không có section-header, thêm vào container
+      const container = section.querySelector('.container');
+      container.appendChild(newHeader);
+      container.appendChild(contentDiv);
+    } else if (headerIndex < sectionHeaders.length - 1) {
       const nextHeader = sectionHeaders[headerIndex + 1];
       nextHeader.parentNode.insertBefore(newHeader, nextHeader);
       newHeader.parentNode.insertBefore(contentDiv, nextHeader);
@@ -638,7 +655,13 @@ function viewContentDetails(index, navName, headerIndex, contentRow) {
     const contentDiv = parentDiv.querySelector('.content');
     const subContents = contentDiv.querySelectorAll('.section-contents');
     const subContent = Array.from(subContents).find(sc => sc.getAttribute('data-name') === contentRow);
-    contentHTML = subContent ? subContent.innerHTML : `<p><strong>${contentRow}</strong>: Nội dung mặc định</p>`;
+    if (subContent) {
+      // Lấy nội dung HTML bên trong subContent
+      contentHTML = subContent.innerHTML.trim();
+    } else {
+      // Nếu không tìm thấy subContent, hiển thị nội dung mặc định
+      contentHTML = `<p><strong>${contentRow}</strong>: Nội dung mặc định</p>`;
+    }
   } else {
     const childElements = Array.from(parentDiv.children);
     childElements.forEach(child => {
@@ -668,7 +691,7 @@ function viewContentDetails(index, navName, headerIndex, contentRow) {
   // Tạo textarea và preview
   const tableContainer = document.getElementById('admin-menu-table');
   let contentHTMLDisplay = contentHTML;
-  // Nếu nội dung là mặc định "Không có nội dung để hiển thị", đặt textarea rỗng
+  // Nếu nội dung là placeholder "Không có nội dung để hiển thị", đặt textarea rỗng
   if (contentHTML === '<p>Không có nội dung để hiển thị.</p>') {
     contentHTMLDisplay = '';
   }
@@ -805,13 +828,13 @@ function viewSectionHeader(index, navName, headerIndex) {
         ];
       } else if (normalizedText === 'Các dự án đã tham gia') {
         defaultSubSections = [
-          { name: 'Dự án 1', content: '<strong>Dự án 1: Hệ thống quản lý sinh viên</strong><p>Mô tả: Phát triển một ứng dụng web để quản lý thông tin sinh viên, sử dụng HTML, CSS, JavaScript và Node.js.</p><p>Thời gian: 06/2024 - 08/2024</p>', id: 'project-1' },
-          { name: 'Dự án 2', content: '<strong>Dự án 2: Ứng dụng học tập trực tuyến</strong><p>Mô tả: Xây dựng nền tảng e-learning hỗ trợ học tập từ xa, tích hợp video bài giảng và bài kiểm tra, sử dụng React và Firebase.</p><p>Thời gian: 09/2024 - 11/2024</p>', id: 'project-2' }
+          { name: 'Dự án 1', content: '<strong>Dự án 1: Website bán quần áo nam - Fashionista</strong><p>Số lượng người tham gia: 5</p><p>Thời gian: 10/2024 - 12/2024</p><p>Công nghệ sử dụng: ExpressJS, ReactJS, PostgreSQL</p><p>Mô tả: Website quản lý bán hàng thời trang nam. Trang web phân quyền giữa người dùng và admin: người dùng có thể đặt mua hàng, còn admin có thể quản lý kho và doanh thu của mình.</p><p>Mô tả trách nhiệm: Thiết kế quản lý cơ sở dữ liệu, xây dựng API cho frontend, xác thực và phân quyền người dùng</p>', id: 'project-1' },
+          { name: 'Dự án 2', content: '<strong>Dự án 2: Trang web đặt lịch giữa học sinh và giáo viên - Appointment website</strong><p>Dự án cá nhân</p><p>Thời gian: 12/2024 - 01/2025</p><p>Công nghệ sử dụng: ExpressJS, ReactJS, PostgreSQL</p><p>Mô tả: Website đặt lịch hẹn giữa giáo viên và học sinh. Học sinh đặt những lịch rảnh của giáo viên, giáo viên có quyền chấp nhận/hủy yêu cầu đó</p><p>Mô tả trách nhiệm: Thiết kế quản lý cơ sở dữ liệu, xây dựng API cho frontend, xác thực và phân quyền người dùng</p>', id: 'project-2' }
         ];
       } else if (normalizedText === 'Sinh hoạt cộng đồng') {
         defaultSubSections = [
-          { name: 'Hiến máu nhân đạo', content: '<strong>Hiến máu nhân đạo</strong><p>Mô tả: Tham gia chương trình hiến máu nhân đạo tại trường đại học, đóng góp vào ngân hàng máu cộng đồng.</p><p>Thời gian: 03/2024</p>', id: 'community-1' },
-          { name: 'Mùa hè xanh', content: '<strong>Mùa hè xanh</strong><p>Mô tả: Tham gia chiến dịch tình nguyện Mùa hè xanh, hỗ trợ xây dựng trường học tại vùng sâu vùng xa.</p><p>Thời gian: 07/2024</p>', id: 'community-2' }
+          { name: 'Hiến máu nhân đạo', content: '<strong>Hiến máu nhân đạo</strong><p>Mô tả: Tham gia chương trình hiến máu nhân đạo tại Đại học Bách Khoa Hà Nội.</p><p>Thời gian: 03/2024</p>', id: 'community-1' },
+          { name: 'Mùa hè xanh', content: '<strong>Mùa hè xanh</strong><p>Mô tả: Tham gia chiến dịch tình nguyện Mùa hè xanh.</p><p>Thời gian: 07/2024</p>', id: 'community-2' }
         ];
       }
       defaultSubSections.forEach(sub => {
