@@ -523,11 +523,18 @@ function addSubSection(index, navName, headerIndex, subSectionIndex) {
   const newSubSectionText = prompt(promptText);
   if (newSubSectionText && newSubSectionText.trim() !== '') {
     const normalizedNewText = normalizeString(newSubSectionText);
-    const contentDiv = parentDiv.querySelector('.content');
+
+    // Tìm hoặc tạo contentDiv
+    let contentDiv = parentDiv.querySelector('.content');
     if (!contentDiv) {
-      const newContentDiv = document.createElement('div');
-      newContentDiv.className = 'content';
-      parentDiv.insertBefore(newContentDiv, headerElement.nextElementSibling);
+      contentDiv = document.createElement('div');
+      contentDiv.className = 'content';
+      // Chèn contentDiv ngay sau headerElement
+      if (headerElement.nextElementSibling) {
+        parentDiv.insertBefore(contentDiv, headerElement.nextElementSibling);
+      } else {
+        parentDiv.appendChild(contentDiv);
+      }
     }
 
     const newContent = document.createElement('div');
@@ -537,11 +544,20 @@ function addSubSection(index, navName, headerIndex, subSectionIndex) {
     newContent.setAttribute('data-name', normalizedNewText);
     newContent.innerHTML = `<p><strong>${normalizedNewText}</strong>: Nội dung mặc định</p>`;
 
-    const existingSubContents = parentDiv.querySelectorAll('.section-contents');
-    if (subSectionIndex < existingSubContents.length - 1) {
-      const nextSubContent = existingSubContents[subSectionIndex + 1];
-      contentDiv.insertBefore(newContent, nextSubContent);
+    // Lấy danh sách các section-contents trực tiếp từ contentDiv
+    const existingSubContents = contentDiv.querySelectorAll('.section-contents');
+
+    // Tìm phần tử hiện tại (dựa trên subSectionIndex) và chèn ngay sau nó
+    const currentSubContent = existingSubContents[subSectionIndex];
+    if (currentSubContent && currentSubContent.parentElement === contentDiv) {
+      // Chèn ngay sau currentSubContent
+      if (currentSubContent.nextElementSibling) {
+        contentDiv.insertBefore(newContent, currentSubContent.nextElementSibling);
+      } else {
+        contentDiv.appendChild(newContent);
+      }
     } else {
+      // Nếu không tìm thấy currentSubContent, thêm vào cuối contentDiv
       contentDiv.appendChild(newContent);
     }
 
@@ -1035,48 +1051,54 @@ function showContent(sectionId) {
     }
     const navtopHeader = document.querySelector('#navtop-info .section-header');
     navtopHeader.textContent = 'Các mục điều hướng'; // Đặt tiêu đề đúng
-    let tableHTML = `
-      <table class="table-info">
-        <thead>
-          <tr>
-            <th>Tên mục điều hướng</th>
-            <th>Các thao tác</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Trang chủ</td>
-            <td>
-              <i class="fas fa-eye" style="margin-right: 60px; cursor: pointer;" title="View" onclick="viewNavDetails(-1, 'Trang chủ')"></i>
-              <i class="fas fa-plus" style="margin-right: 10px; cursor: pointer;" title="Thêm hàng mới" onclick="addNavName(-1)"></i>
-            </td>
-          </tr>
-    `;
-    navNames.forEach((name, index) => {
-      if (index < navNames.length - 1) {
-        tableHTML += `
-          <tr>
-            <td>${name}</td>
-            <td>
-              <i class="fas fa-eye" style="margin-right: 10px; cursor: pointer;" title="View" onclick="viewNavDetails(${index}, '${name}')"></i>
-              <i class="fas fa-pencil-alt" style="margin-right: 10px; cursor: pointer;" title="Edit" onclick="editNavName(${index})"></i>
-              <i class="fas fa-times" style="margin-right: 10px; cursor: pointer;" title="Delete" onclick="deleteNavName(${index})"></i>
-              <i class="fas fa-plus" style="margin-right: 10px; cursor: pointer;" title="Thêm hàng mới" onclick="addNavName(${index})"></i>
-            </td>
-          </tr>
-        `;
-      }
-    });
-    tableHTML += `
-        </tbody>
-      </table>
-    `;
-    tableContainer.innerHTML = tableHTML;
 
-    // Cập nhật trạng thái
-    if (adminState !== 'left' && adminState !== 'layout' && adminState !== 'content') {
-      adminState = 'top';
+    // Cập nhật tiêu đề của admin-page
+    const header = document.querySelector('#admin-page .header');
+    if (adminState === 'top') {
+      header.textContent = 'Admin menu top';
     }
+
+    // Nếu không ở trạng thái 'top', không cần tạo lại bảng (giữ nguyên trạng thái hiện tại)
+    if (adminState === 'top') {
+      let tableHTML = `
+        <table class="table-info">
+          <thead>
+            <tr>
+              <th>Tên mục điều hướng</th>
+              <th>Các thao tác</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Trang chủ</td>
+              <td>
+                <i class="fas fa-eye" style="margin-right: 60px; cursor: pointer;" title="View" onclick="viewNavDetails(-1, 'Trang chủ')"></i>
+                <i class="fas fa-plus" style="margin-right: 10px; cursor: pointer;" title="Thêm hàng mới" onclick="addNavName(-1)"></i>
+              </td>
+            </tr>
+      `;
+      navNames.forEach((name, index) => {
+        if (index < navNames.length - 1) {
+          tableHTML += `
+            <tr>
+              <td>${name}</td>
+              <td>
+                <i class="fas fa-eye" style="margin-right: 10px; cursor: pointer;" title="View" onclick="viewNavDetails(${index}, '${name}')"></i>
+                <i class="fas fa-pencil-alt" style="margin-right: 10px; cursor: pointer;" title="Edit" onclick="editNavName(${index})"></i>
+                <i class="fas fa-times" style="margin-right: 10px; cursor: pointer;" title="Delete" onclick="deleteNavName(${index})"></i>
+                <i class="fas fa-plus" style="margin-right: 10px; cursor: pointer;" title="Thêm hàng mới" onclick="addNavName(${index})"></i>
+              </td>
+            </tr>
+          `;
+        }
+      });
+      tableHTML += `
+          </tbody>
+        </table>
+      `;
+      tableContainer.innerHTML = tableHTML;
+    }
+
     updateBackButton();
   }
   // Xử lý động cho các sectionId trong sectionIds
