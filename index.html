@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>ORA1</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="./lib/w3.css">
+  <link rel="stylesheet" href="./lib/w3-theme-black.css">
+  <link rel="stylesheet" href="./lib/css">
+  <link rel="stylesheet" href="./lib/font-awesome.min.css">
+  <link rel="stylesheet" href="./css/styles.css">
+</head>
+
+<body>
+  <!-- Navbar -->
+  <div class="w3-top">
+    <div class="w3-bar w3-theme w3-large">
+      <a class="w3-bar-item w3-button w3-right w3-hide-large w3-hover-white w3-large w3-theme-l1"
+        href="javascript:void(0)" onclick="w3_open()"><i class="fa fa-bars"></i></a>
+      <a href="#" onclick="showContent('courseInfo')" class="w3-bar-item w3-button">
+        <i class="fas fa-home"></i>
+      </a>
+      <a href="javascript:void(0)" onclick="showContent('info')" class="w3-bar-item w3-button">Thông tin môn học</a>
+      <a href="javascript:void(0)" onclick="showContent('web-tech')" class="w3-bar-item w3-button">Các công nghệ web</a>
+      <a href="javascript:void(0)" onclick="showContent('student-info')" class="w3-bar-item w3-button">Thông tin sinh
+        viên</a>
+      <a href="javascript:void(0)" onclick="showContent('admin-page')" class="w3-bar-item w3-button">Admin page</a>
+    </div>
+  </div>
+
+  <!-- Sidebar -->
+  <nav class="w3-sidebar w3-bar-block w3-collapse w3-large w3-theme-l5 w3-animate-left" id="mySidebar">
+    <a href="javascript:void(0)" onclick="w3_close()"
+      class="w3-right w3-xlarge w3-padding-large w3-hover-black w3-hide-large" title="Close Menu">
+      <i class="fa fa-remove"></i>
+    </a>
+    <h4 class="w3-bar-item"><b>Menu</b></h4>
+    <a class="w3-bar-item w3-button w3-hover-black" href="#">Link</a>
+    <a class="w3-bar-item w3-button w3-hover-black" href="#">Link</a>
+    <a class="w3-bar-item w3-button w3-hover-black" href="#">Link</a>
+    <a class="w3-bar-item w3-button w3-hover-black" href="#">Link</a>
+  </nav>
+
+  <!-- Overlay effect when opening sidebar on small screens -->
+  <div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu"
+    id="myOverlay"></div>
+
+  <!-- Main content -->
+  <div id="content-container" class="w3-main" style="margin-left:250px">
+    <!-- Section 1: Logo -->
+    <div id="courseInfo" class="w3-container w3-padding-64 hidden">
+      <div class="container">
+        <div id="classInfo">
+          <div class="section-header" id="classInfo-header">Thông tin khai giảng</div>
+          <table class="table-info">
+            <tr>
+              <th>Thứ</th>
+              <td>Thứ 6</td>
+            </tr>
+            <tr>
+              <th>Thời gian/Tiết</th>
+              <td>Từ 3 đến 6</td>
+            </tr>
+            <tr>
+              <th>Ngày/Tuần</th>
+              <td>2-9,11-18</td>
+            </tr>
+            <tr>
+              <th>Tại địa điểm</th>
+              <td>D9-501</td>
+            </tr>
+          </table>
+        </div>
+        <div id="seminar">
+          <div class="section-header" id="seminar-header" style="margin-top: 20px;">Thông tin seminar</div>
+          <table class="table-info">
+            <tr>
+              <th>Mã lớp</th>
+              <td>151900</td>
+            </tr>
+            <tr>
+              <th>Loại hình</th>
+              <td>LT+BT</td>
+            </tr>
+            <tr>
+              <th>Hệ</th>
+              <td>HEDSPI</td>
+            </tr>
+            <tr>
+              <th>GVHD</th>
+              <td>Phạm Huy Hoàng</td>
+            </tr>
+            <tr>
+              <th>Số lần vắng</th>
+              <td>0</td>
+            </tr>
+            <tr>
+              <th>Số sinh viên</th>
+              <td>150</td>
+            </tr>
+            <tr>
+              <th>Hình thức GD</th>
+              <td>Offline</td>
+            </tr>
+          </table>
+        </div>
+        <div id="company">
+          <div class="section-header" id="company-header" style="margin-top: 20px;">Thông tin công ty quan tâm</div>
+          <div style="display: flex; justify-content: space-between;">
+            <div style="flex: 2; margin-right: 30px;">
+              <ul>
+                <li><strong>Công ty:</strong> FPT Software</li>
+              </ul>
+              <p>
+                FPT Software là tên gọi khác của công ty TNHH Phần Mềm FPT với nhiệm vụ chính là gia công phần mềm tại
+                Việt Nam và nước ngoài. Thành lập từ năm 1988 đến nay với 3 Trụ sở chính FPT Software đặt tại Việt Nam
+                và
+                một số nước trên toàn thế giới như Hoa Kỳ, Nhật Bản, Malaysia, Đức, Úc, Singapore, Malaysia, Thái Lan và
+                Philipines hiện FPT Software đáp ứng nhu cầu gia công phần mềm lớn cho hơn 150 công ty hàng đầu tại 20
+                quốc gia lớn nhất trên thế giới hiện nay với các hợp đồng lớn có khi đạt cả 1 triệu USD dành cho một số
+                đối tác lớn như Hitachi, NEOPOST, Petronas, Deutsche Bank, và Unilever với hơn 4000 nhân viên trên toàn
+                thế giới. </p>
+              <p>FPT Software theo đuổi mục tiêu gia công phần mềm để đáp ứng cho nhu cầu phát triển CNTT của các hãng
+                phần
+                mềm trong nước, các công ty lớn trong nước và tham vọng hơn là xuất khẩu phần mềm trên toàn thế giới cho
+                các công ty nước ngoài biết đến tập đoàn FPT, mục đích chính là vươn đến tầm cao mới thông qua công nghệ
+                nhằm nâng cao năng suất lao động.</p>
+
+
+
+              <p>Kinh doanh của FPT Software xuất phát từ Công nghệ thông tin và Viễn Thông FPT là cốt lõi để đáp ứng
+                cho
+                khách hàng trên 63 tỉnh thành trên toàn lãnh thổ Việt Nam và mở rộng đến khách hàng toàn cầu. Từ khi
+                được
+                thành lập cho đến nay, FPT Software đã là công ty phần mềm số 1 tại Việt Nam trong lĩnh vực tích hợp hệ
+                thống, phân phối và bán lẻ, dịch vụ Công Nghệ Thông tin, xuất khẩu gia công phần mềm, bán lẻ sản phẩm
+                CNTT. Ở lĩnh vực Viễn Thông FPT là một trong 3 nhà cung cấp dịch vụ internet cáp quang FPT hàng đầu tại
+                Việt Nam. Về lĩnh vực quảng cáo, FPT là đơn vị quảng cáo trực tuyến số 1 tại Việt Nam với trang báo điện
+                tử VNexpress với hơn 42 triệu lượt truy cập mỗi ngày.</p>
+            </div>
+            <a href="https://fptsoftware.com/" target="_blank" style="flex: 1; margin-top: 20px;">
+              <div class="FRB" style="width: 100%;">
+                <img class="DRB"
+                  src="http://itde.hvnh.edu.vn/public/img/news/files/FPT%20tuy%E1%BB%83n%20d%E1%BB%A5ng%20(2).jpg"
+                  style="width: 100%;">
+                <div class="ERB" style="width: 100%;color: blue" title="">FPT SOFTWARE TUYỂN DỤNG</div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 2: Thông tin môn học -->
+    <div id="info" class="w3-container w3-padding-64 hidden">
+      <div class="container">
+        <div class="header">Thông tin môn học</div>
+        <div style="width: 100%;">
+          <table cellspacing="0" cellpadding="0" style="width: 100%;">
+            <tbody>
+              <tr>
+                <td style="vertical-align: top;">
+                  <div class="GBC">
+                    <div style="display: flex; flex-wrap: wrap; gap: 20px;">
+                      <div style="flex: 1; min-width: 300px;">
+                        <label>Đơn vị (*)</label>
+                        <select id="dropdown" disabled style="width: 100%;">
+                          <option>Trường Công nghệ Thông tin và Truyền thông</option>
+                        </select>
+                      </div>
+                      <div style="flex: 1; min-width: 300px;">
+                        <label>Đơn vị con</label>
+                        <select id="dropdown" disabled style="width: 100%;">
+                          <option>Nothing selected</option>
+                        </select>
+                      </div>
+                      <div style="flex: 1; min-width: 300px;">
+                        <label>Mã học phần (*)</label>
+                        <input type="text" value="IT4409" dir="ltr" readonly="" disabled style="width: 100%;">
+                      </div>
+                      <div style="flex: 1; min-width: 300px;">
+                        <label>Tên học phần</label>
+                        <input type="text" value="Công nghệ web và dịch vụ trực tuyến" dir="ltr" readonly="" disabled
+                          style="width: 100%; white-space: nowrap; overflow: hidden;">
+                      </div>
+                      <div style="flex: 1; min-width: 300px;">
+                        <label>Tên tiếng Anh</label>
+                        <input type="text" value="Web technologies and e-Services"
+                          class="form-control IBC form-control-readonly" dir="ltr" readonly="" disabled
+                          style="width: 100%;">
+                      </div>
+                      <div style="flex: 1; min-width: 300px;">
+                        <label>Hệ đào tạo</label>
+                        <select id="dropdown" disabled style="width: 100%;">
+                          <option>4 items selected</option>
+                        </select>
+                        <div style="width: 100%;">
+                          <a>Thạc sỹ Khoa học [X] </a>
+                          <a>Kỹ sư chính quy [X] </a>
+                          <a>Cử nhân [X] </a>
+                          <a>Việt-Nhật [X] </a>
+                        </div>
+                      </div>
+                      <div style="flex: 1; min-width: 300px;">
+                        <label>Ngành đào tạo</label>
+                        <select id="dropdown" disabled style="width: 100%;">
+                          <option>Trường Công nghệ Thông tin và Truyền thông</option>
+                        </select>
+                      </div>
+                      <div style="flex: 1; min-width: 300px;">
+                        <label>Loại hình (*)</label>
+                        <select id="dropdown" disabled style="width: 100%;">
+                          <option>Lớp</option>
+                        </select>
+                      </div>
+                      <div style="flex: 1; min-width: 300px;">
+                        <label>Điều phối viên</label>
+                        <select id="dropdown" disabled style="width: 100%;">
+                          <option>Phạm Huy Hoàng</option>
+                        </select>
+                      </div>
+                      <div style="flex: 1; min-width: 300px;">
+                        <label>Nhóm chuyên môn</label>
+                        <select id="dropdown" disabled style="width: 100%;">
+                          <option>Phạm Huy Hoàng</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div style="display: flex; flex-wrap: wrap; gap: 20px;">
+                      <div style="flex: 1; min-width: 300px;">
+                        <label>HP liên quan</label>
+                        <input type="text" placeholder="Nhập mã HP" disabled style="width: 100%;">
+                      </div>
+                      <div style="flex: 1; min-width: 300px;">
+                        <label>Hệ số điểm thực hành</label>
+                        <input type="text" value="0" class="form-control IBC" dir="ltr" disabled=""
+                          style="width: 100%;">
+                      </div>
+                      <div style="flex: 1; min-width: 300px;">
+                        <label>Số tín chỉ</label>
+                        <input type="text" value="3" class="form-control IBC" dir="ltr" disabled=""
+                          style="width: 100%;">
+                      </div>
+                      <div style="flex: 1; min-width: 300px;">
+                        <label>Số giờ LT</label>
+                        <input type="text" value="2" class="form-control IBC" dir="ltr" disabled=""
+                          style="width: 100%;">
+                      </div>
+                      <div style="flex: 1; min-width: 300px;">
+                        <label>Số giờ BT</label>
+                        <input type="text" value="2" class="form-control IBC" dir="ltr" disabled=""
+                          style="width: 100%;">
+                      </div>
+                      <div style="flex: 1; min-width: 300px;">
+                        <label>Số giờ TN/TH</label>
+                        <input type="text" value="0" class="form-control IBC" dir="ltr" disabled=""
+                          style="width: 100%;">
+                      </div>
+                      <div style="flex: 1; min-width: 300px;">
+                        <label>Số giờ tự học</label>
+                        <input type="text" value="6" class="form-control IBC" dir="ltr" disabled=""
+                          style="width: 100%;">
+                      </div>
+                      <div style="flex: 1; min-width: 300px;">
+                        <label>Số giờ thực tập</label>
+                        <input type="text" value="0" class="form-control IBC" dir="ltr" disabled=""
+                          style="width: 100%;">
+                      </div>
+                      <div style="flex: 1; min-width: 300px;">
+                        <label>kHD thực tập</label>
+                        <input type="text" value="0" class="form-control IBC" dir="ltr" disabled=""
+                          style="width: 100%;">
+                      </div>
+                      <div style="flex: 1; min-width: 300px;">
+                        <label>kHD đồ án</label>
+                        <input type="text" value="0" class="form-control IBC" dir="ltr" disabled=""
+                          style="width: 100%;">
+                      </div>
+                      <div style="flex: 1; min-width: 300px;">
+                        <label>Phân bố</label>
+                        <input type="text" value="3(2-2-0-6)" class="form-control IBC" dir="ltr" disabled=""
+                          style="width: 100%;">
+                      </div>
+                      <div style="flex: 1; min-width: 300px;">
+                        <label>Hình thức thi cuối kỳ</label>
+                        <select id="dropdown" disabled style="width: 100%;">
+                          <option>[Chọn hình thức thi cuối kỳ]</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div id="summaryVN">
+                      <div style="width: 100%;">
+                        <hr>
+                      </div>
+                      <div class="section-header" id="summaryVN-header" style="margin-top: 20px;">Mô tả tóm tắt học phần
+                        (tiếng Việt)(*)</div>
+                      <p><strong>Mục tiêu: </strong>Học phần cung cấp các kiến thức cần thiết để xây dựng và phát
+                        triển
+                        các ứng dụng, dịch vụ trực
+                        tuyến trên môi trường web. Sau khi học xong học phần này, sinh viên có khả năng:
+                      <ul>
+                        <li>Có thể sử dụng một ngôn ngữ lập trình như JSP, PHP để phát triển ứng dụng web cho các
+                          lĩnh
+                          vực khác nhau như: hệ quản trị nội dung (CMS), cổng thông tin (Portal), hay các ứng dụng
+                          điện
+                          tử (eCommerce, eLearning, eGoverment,…)</li>
+                        <li>Nắm vững được các công nghệ web, các platform, framework hiện đang thịnh hành.</li>
+                      </ul>
+                      Ngoài ra học phần cũng cung cấp cho sinh viên các kỹ năng làm việc nhóm, thuyết trình và thái
+                      độ
+                      cần thiết để làm việc và ứng dụng các kỹ thuật trong các dự án, công ty về phần mềm sau này.
+                      </p>
+                    </div>
+                    <div id="summaryEN">
+                      <div style="width: 100%;">
+                        <hr>
+                      </div>
+                      <div class="section-header" id="summaryEN-header" style="margin-top: 20px;">Mô tả tóm tắt học phần
+                        (tiếng Anh)(*)</div>
+                      <p><strong>Objectives:</strong>
+                        The course provides students with the necessary knowledge to build and develop online
+                        applications and services on the web environment. After completing this couse, students are
+                        able
+                        to:
+                      <ul>
+                        <li>Use a programming language such as JSP, PHP to develop web applications for different
+                          areas
+                          such as content management system (CMS), portal, or online applications (eCommerce,
+                          eLearning,
+                          eGoverment, ...)</li>
+                        <li>Understand the popular web technologies, platforms, frameworks.</li>
+                      </ul>
+                      In addition, the course also provides students with skills of teamwork and presentation, and
+                      attitudes needed to work and apply the techniques in software projects and companies in the
+                      future.</p>
+                    </div>
+                    <div id="contentVN">
+                      <div style="width: 100%;">
+                        <hr>
+                      </div>
+                      <div class="section-header" id="contentVN-header" style="margin-top: 20px;">Nội dung tóm tắt của
+                        học phần (tiếng Việt)(*)</div>
+                      <div>
+                        <p>Internet, web, kiến trúc ứng dụng web, HTML, CSS, Javascript, PHP, JSP, Ajax, DOM, XML, SOA,
+                          An toàn bảo mật web, v.v.</p>
+                      </div>
+                    </div>
+                    <div id="contentEN">
+                      <div style="width: 100%;">
+                        <hr>
+                      </div>
+                      <div class="section-header" id="contentEN-header" style="margin-top: 20px;">Nội dung tóm tắt của
+                        học phần (tiếng Anh)(*)</div>
+                      <div>
+                        <p>Internet, web, architecture of web application, HTML, CSS, Javascript, PHP, JSP, Ajax, DOM,
+                          XML, SOA, website security, etc.</p>
+                      </div>
+                    </div>
+                    <div id="reference">
+                      <div style="width: 100%;">
+                        <hr>
+                      </div>
+                      <div class="section-header" id="reference-header" style="margin-top: 20px;">Sách tham khảo</div>
+                      <div style="display: flex; justify-content: space-between;">
+                        <div style="flex: 2; margin-right: 30px;">
+                          <p>Sách Web Technologies: HTML, Javascript, PHP, Java, Jsp, XML and Ajax, Black Book</p>
+                        </div>
+                        <a href="https://www.amazon.com/Web-Technologies-HTML-Javascript-Black/dp/8177229974"
+                          target="_blank" style="flex: 1;margin-top: 20px;">
+                          <div class="FRB" style="width: 100%;">
+                            <img class="DRB" src="https://m.media-amazon.com/images/I/71t58FV+qFL._SY466_.jpg"
+                              style="width: 100%;">
+                            <div class="ERB" style="width: 100%;color: blue" title="">Web Technologies: HTML,
+                              Javascript, PHP, Java, Jsp, XML and Ajax, Black Book</div>
+                          </div>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 3: Các công nghệ web -->
+    <div id="web-tech" class="w3-container w3-padding-64 hidden">
+      <div class="container">
+        <div class="header">Các công nghệ web</div>
+        <div id="frontend">
+          <div class="section-header" id="frontend-header" style="margin-top: 20px;">1. Frontend (Giao diện người dùng)
+          </div>
+          <ul>
+            <li><strong>HTML, CSS, JavaScript</strong>: Các công nghệ cơ bản để xây dựng cấu trúc và giao diện người
+              dùng.</li>
+            <li><strong>ReactJS</strong>: Thư viện JavaScript để xây dựng giao diện người dùng động.</li>
+            <li><strong>Angular</strong>: Framework JavaScript mạnh mẽ cho các ứng dụng Web quy mô lớn.</li>
+            <li><strong>Vue.js</strong>: Framework linh hoạt giúp phát triển giao diện người dùng hiệu quả.</li>
+            <li><strong>CSS Preprocessors (SASS, LESS)</strong>: Giúp cải thiện mã CSS với các tính năng như biến và
+              hàm.</li>
+            <li><strong>Responsive Design</strong>: Thiết kế giao diện phù hợp với mọi kích thước màn hình (sử dụng
+              Bootstrap, Tailwind CSS).</li>
+          </ul>
+        </div>
+        <div id="backend">
+          <div class="section-header" id="backend-header" style="margin-top: 20px;">2. Backend (Máy chủ và xử lý dữ
+            liệu)</div>
+          <ul>
+            <li><strong>Node.js</strong>: Môi trường runtime JavaScript hiệu quả cho ứng dụng Web.</li>
+            <li><strong>Express.js</strong>: Framework giúp xây dựng API và xử lý các yêu cầu HTTP nhanh chóng.</li>
+            <li><strong>Django (Python)</strong>: Framework Python phù hợp cho các ứng dụng Web cần bảo mật cao.</li>
+            <li><strong>Ruby on Rails</strong>: Framework giúp phát triển ứng dụng Web nhanh chóng và dễ dàng bảo trì.
+            </li>
+            <li><strong>Java Spring Boot</strong>: Framework mạnh mẽ cho ứng dụng Web Java với khả năng mở rộng cao.
+            </li>
+          </ul>
+        </div>
+        <div id="database">
+          <div class="section-header" id="database-header" style="margin-top: 20px;">3. Cơ sở dữ liệu</div>
+          <ul>
+            <li><strong>MySQL</strong>: Cơ sở dữ liệu quan hệ phổ biến.</li>
+            <li><strong>PostgreSQL</strong>: Cơ sở dữ liệu mạnh mẽ hỗ trợ truy vấn phức tạp.</li>
+            <li><strong>MongoDB</strong>: Cơ sở dữ liệu NoSQL linh hoạt cho dữ liệu phi cấu trúc.</li>
+            <li><strong>Cassandra</strong>: Cơ sở dữ liệu NoSQL phân tán phù hợp cho dữ liệu lớn.</li>
+          </ul>
+        </div>
+        <div id="api">
+          <div class="section-header" id="api-header" style="margin-top: 20px;">4. API và Tích hợp dịch vụ</div>
+          <ul>
+            <li><strong>RESTful APIs</strong>: Phương thức phổ biến để giao tiếp giữa các hệ thống qua HTTP.</li>
+            <li><strong>GraphQL</strong>: Công nghệ API mạnh mẽ giúp lấy dữ liệu theo yêu cầu.</li>
+            <li><strong>WebSockets</strong>: Giải pháp cho các ứng dụng thời gian thực.</li>
+          </ul>
+        </div>
+        <div id="devops">
+          <div class="section-header" id="devops-header" style="margin-top: 20px;">5. DevOps và Triển khai</div>
+          <ul>
+            <li><strong>Docker</strong>: Giải pháp đóng gói ứng dụng và môi trường vào container.</li>
+            <li><strong>CI/CD</strong>: Tự động hóa quy trình kiểm thử và triển khai (Jenkins, GitLab CI, GitHub
+              Actions).</li>
+            <li><strong>AWS, Azure, Google Cloud</strong>: Các dịch vụ đám mây linh hoạt cho phát triển và triển khai
+              ứng dụng Web.</li>
+          </ul>
+        </div>
+        <div id="security">
+          <div class="section-header" id="security-header" style="margin-top: 20px;">6. Bảo mật</div>
+          <ul>
+            <li><strong>OAuth2 & JWT</strong>: Cơ chế xác thực và phân quyền người dùng an toàn.</li>
+            <li><strong>HTTPS</strong>: Đảm bảo giao tiếp an toàn qua mã hóa SSL/TLS.</li>
+            <li><strong>Helmet.js</strong>: Thư viện Node.js tăng cường bảo mật HTTP header.</li>
+          </ul>
+        </div>
+        <div id="testing">
+          <div class="section-header" id="testing-header" style="margin-top: 20px;">7. Testing và Debugging</div>
+          <ul>
+            <li><strong>Jest</strong>: Công cụ kiểm thử JavaScript, thường dùng với React và Node.js.</li>
+            <li><strong>Mocha & Chai</strong>: Framework kiểm thử cho Node.js.</li>
+            <li><strong>Cypress</strong>: Công cụ kiểm thử tích hợp mạnh mẽ cho các ứng dụng Web.</li>
+            <li><strong>Postman</strong>: Công cụ kiểm thử API và làm việc với RESTful API.</li>
+          </ul>
+        </div>
+        <div id="optimization">
+          <div class="section-header" id="optimization-header" style="margin-top: 20px;">8. Performance Optimization
+          </div>
+          <ul>
+            <li><strong>Lazy Loading</strong>: Tải tài nguyên theo yêu cầu để cải thiện tốc độ tải trang.</li>
+            <li><strong>CDN (Content Delivery Network)</strong>: Mạng phân phối nội dung giúp giảm độ trễ và cải thiện
+              tốc độ.</li>
+            <li><strong>Caching</strong>: Sử dụng Redis hoặc Memcached để lưu trữ dữ liệu tạm thời và giảm tải cho
+              server.</li>
+          </ul>
+        </div>
+        <div id="authentication">
+          <div class="section-header" id="authentication-header" style="margin-top: 20px;">9. User Authentication &
+            Authorization</div>
+          <ul>
+            <li><strong>Firebase Authentication</strong>: Dịch vụ đăng nhập thông qua Google, Facebook, email/password.
+            </li>
+            <li><strong>Auth0</strong>: Dịch vụ bảo mật giúp quản lý xác thực và phân quyền người dùng dễ dàng.</li>
+          </ul>
+        </div>
+        <a href="https://developer.mozilla.org/en-US/docs/Web" target="_blank">
+          <img width="100%"
+            src="https://www.shutterstock.com/shutterstock/photos/1854050815/display_1500/stock-vector-abstract-technology-horizontal-motion-style-concept-particle-connection-background-design-with-red-1854050815.jpg"
+            alt="">
+          <p style="color: blue;">Các công nghệ web</p>
+        </a>
+      </div>
+    </div>
+
+    <!-- Section 4: Thông tin sinh viên -->
+    <div id="student-info" class="w3-container w3-padding-64 hidden">
+      <div class="container">
+        <div class="header">Thông tin sinh viên</div>
+        <div class="student-info" style="height: 50%">
+          <div class="left">
+            <img style="width: 60%; margin-left: 80px;" src="./assets/ava.jpg" alt="Student Photo"
+              class="profile-photo">
+          </div>
+          <div class="right">
+            <div class="details"><span>Họ và tên:</span> Nguyễn Thế Anh</div>
+            <div class="details"><span>Năm vào trường:</span> 2022</div>
+            <div class="details"><span>Chương trình:</span> Khoa học máy tính</div>
+            <div class="details"><span>MSSV:</span> 20224920</div>
+            <div class="details"><span>Giới tính:</span> Nam</div>
+            <div class="details"><span>Lớp:</span> IT1-01-K67</div>
+            <div class="details"><span>Khóa học:</span> 67</div>
+            <div class="details"><span>Email:</span> anh.nt224920@sis.hust.edu.vn</div>
+          </div>
+        </div>
+        <div class="academic-info" id="academic-info">
+          <div class="section-header" id="academic-info-header">Thông tin học tập</div>
+          <table class="table-info">
+            <tr>
+              <th>Tổng kết học kỳ</th>
+              <td>20241</td>
+              <th>Số TC tích lũy</th>
+              <td>85</td>
+            </tr>
+            <tr>
+              <th>Trung bình tích lũy</th>
+              <td>3.74</td>
+              <th>Trình độ sinh viên</th>
+              <td>3</td>
+            </tr>
+            <tr>
+              <th>Số TC nợ đăng ký</th>
+              <td>0</td>
+              <th>Mức cảnh báo</th>
+              <td>M0</td>
+            </tr>
+          </table>
+        </div>
+        <div class="skills-info" id="skills-info">
+          <div class="section-header" id="skills-info-header">Kĩ năng</div>
+          <div class="skills">
+            <table class="table-info">
+              <tr>
+                <th>Ngôn ngữ</th>
+                <td>HTML, CSS, JavaScript, TypeScript, Java</td>
+              </tr>
+              <tr>
+                <th>Frameworks</th>
+                <td>ReactJS, ExpressJS, NestJS</td>
+              </tr>
+              <tr>
+                <th>Công cụ</th>
+                <td>Git, Postman, Docker</td>
+              </tr>
+              <tr>
+                <th>Cơ sở dữ liệu</th>
+                <td>PostgreSQL, MongoDB</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <div class="projects-info" id="projects-info">
+          <div class="section-header" id="projects-info-header">Dự án</div>
+          <div class="project">
+            <table class="table-info">
+              <tr>
+                <th>Web bán quần áo nam - Fashionista</th>
+                <td>Nhóm 5 người <br> Công nghệ sử dụng: ExpressJS, ReactJS, PostgreSQL <br> Mô tả dự án: Website quản
+                  lý bán hàng thời trang nam...</td>
+              </tr>
+              <tr>
+                <th>Website đặt lịch giữa học sinh và giáo viên</th>
+                <td>Dự án cá nhân <br> Công nghệ sử dụng: ExpressJS, ReactJS, PostgreSQL <br> Mô tả dự án: Website đặt
+                  lịch hẹn giữa giáo viên và học sinh...</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <div class="hobbies-info" id="hobbies-info">
+          <div class="section-header" id="hobbies-info-header">Sở thích</div>
+          <ul>
+            <li>Cầu lông</li>
+            <li>Chạy bộ</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 5: Admin page -->
+    <div id="admin-page" class="w3-container w3-padding-64 hidden">
+      <div class="container">
+        <div class="header">Admin menu top</div>
+        <div class="navtop-info" id="navtop-info">
+          <div class="section-header" id="navtop-info-header">Các mục điều hướng</div>
+        </div>
+        <div id="admin-menu-table"></div>
+      </div>
+    </div>
+  </div>
+
+  <footer id="myFooter">
+    <div class="w3-theme-l1 w3-padding-32">
+      <p>© 2025 Anh's Website. All rights reserved.</p>
+      <p>Liên hệ: <a href="mailto:info@mywebsite.com">info@mywebsite.com</a></p>
+      <p>
+        <a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook"></i> Facebook</a> |
+        <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i> Twitter</a> |
+        <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+      </p>
+      <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
+    </div>
+  </footer>
+
+  <script src="./js/scripts.js"></script>
+
+  <div id="highlighter--hover-tools" style="display: none;">
+    <div id="highlighter--hover-tools--container">
+      <div class="highlighter--icon highlighter--icon-copy" title="Copy"></div>
+      <div class="highlighter--icon highlighter--icon-change-color" title="Change Color"></div>
+      <div class="highlighter--icon highlighter--icon-delete" title="Delete"></div>
+    </div>
+  </div>
+</body>
+
+</html>
