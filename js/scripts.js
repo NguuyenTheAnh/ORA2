@@ -1203,7 +1203,7 @@ function showContent(sectionId) {
     event.target.classList.add('active');
   }
 }
-
+// load
 window.onload = function () {
   showContent('courseInfo');
   updateMenuTop();
